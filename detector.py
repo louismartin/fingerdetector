@@ -14,6 +14,7 @@ class Detector:
             '9': ['9','o','l','.'],
             '10': ['0','p',';','/','-','[','\'','=',']','\\']
         }
+        self.keys_hit = pd.DataFrame(columns=['key', 'finger', 'hit_time'])
 
     def run(self):
         self.start_time = time.time()
@@ -22,8 +23,10 @@ class Detector:
             key = getch()
             hit_time = time.time() - self.start_time
             finger = self.get_finger(key)
+            self.keys_hit.loc[i,] = [key, finger, hit_time]
             print('%s hit with finger %s at %f' % (key, finger, hit_time))
-            
+        self.keys_hit.to_csv('keys_hit.csv')
+    
     def get_finger(self, key):
         for finger, keys in self.finger_keys.items():
             if key in keys:
