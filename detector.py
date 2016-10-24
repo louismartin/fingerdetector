@@ -26,10 +26,9 @@ class Detector:
             self.keys_hit.loc[i,] = [key, finger, hit_time]
             print('%s hit with finger %s at %f' % (key, finger, hit_time))
         self.keys_hit.to_csv('keys_hit.csv')
-    
+
     def get_finger(self, key):
         for finger, keys in self.finger_keys.items():
             if key in keys:
                 return finger
         return None
-                      
