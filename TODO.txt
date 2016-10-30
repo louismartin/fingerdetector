@@ -1,0 +1,1 @@
+Add practical exercice by taking .bash_history and taking the most used commands
